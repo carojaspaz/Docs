@@ -38,7 +38,7 @@ namespace AspNetCoreService
                 isService = false;
             }
 
-            var host = CreateWebHostBuilder(args, isService).Build();
+            var host = CreateWebHostBuilder(args).Build();
 
             if (isService)
             {
@@ -50,9 +50,15 @@ namespace AspNetCoreService
             }
         }
 
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args, 
-            bool isService)
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args)
         {
+            var isService = true;
+
+            if (Debugger.IsAttached || args.Contains("--console"))
+            {
+                isService = false;
+            }
+
             var pathToContentRoot = Directory.GetCurrentDirectory();
 
             if (isService)
@@ -80,7 +86,7 @@ namespace AspNetCoreService
                 isService = false;
             }
 
-            var host = CreateWebHostBuilder(args, isService).Build();
+            var host = CreateWebHostBuilder(args).Build();
 
             if (isService)
             {
@@ -92,9 +98,15 @@ namespace AspNetCoreService
             }
         }
 
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args, 
-            bool isService)
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args)
         {
+            var isService = true;
+
+            if (Debugger.IsAttached || args.Contains("--console"))
+            {
+                isService = false;
+            }
+
             var pathToContentRoot = Directory.GetCurrentDirectory();
 
             if (isService)
